@@ -14,13 +14,15 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CargandoComponent } from './componentes/cargando/cargando.component';
+import { MenuComponent } from './componentes/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
-    CargandoComponent
+    CargandoComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
