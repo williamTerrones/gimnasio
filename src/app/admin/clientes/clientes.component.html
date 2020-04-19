@@ -1,46 +1,22 @@
 <div class="row">
-    <form class="form-group col-12">
-        <input type="search" placeholder="Buscar cliente" class="form-control">
-    </form>
+  <form class="form-group col-12">
+    <input type="search" placeholder="Buscar cliente" class="form-control">
+  </form>
 </div>
 
-<div class="row">
-
-  <div class="sm-4">
+<div class="row" *ngIf="!clienteService.cargando; else cargando">
+  <div class="sm-4" *ngFor="let cliente of clienteService.clientes">
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="assets/img/trainer.jpg" alt="Card image cap">
+      <img class="card-img-top" [src]="cliente.url_imagen" alt="Card image cap">
       <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-          <a href="#" class="btn btn-primary">Editar</a>
-          <a href="#" class="btn btn-danger">Eliminar</a>
-      </div>
-    </div>
-  </div>
-  <div class="sm-4">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="assets/img/trainer.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
-          <a href="#" class="btn btn-primary">Editar</a>
-          <a href="#" class="btn btn-danger">Eliminar</a>
-      </div>
-    </div>
-  </div>
-  <div class="sm-4">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="assets/img/trainer.jpg" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-          content.</p>
+        <h5 class="card-title">{{cliente.nombre}} {{cliente.apellidos}}</h5>
+        <p class="card-text">{{cliente.telefono}}</p>
         <a href="#" class="btn btn-primary">Editar</a>
         <a href="#" class="btn btn-danger">Eliminar</a>
       </div>
     </div>
   </div>
-  
 </div>
+
+
+<ng-template #cargando>Cargando...</ng-template>
