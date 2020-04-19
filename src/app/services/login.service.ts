@@ -13,8 +13,10 @@ export class LoginService {
 
   constructor(public afAuth: AngularFireAuth) { 
     this.afAuth.user.subscribe(user => {
-      this.cargando = false;
-      this.user = user;
+      setTimeout(() => {
+        this.cargando = false;
+        this.user = user;
+      }, 1000)
     })
   }
 

@@ -1,7 +1,7 @@
 <div class="container">
   <router-outlet *ngIf="!loginService.cargando && loginService.user; else showLogin"></router-outlet>
   <ng-template #showLogin>
-    <div *ngIf="loginService.cargando">Cargando...</div>
+    <app-cargando *ngIf="loginService.cargando" ></app-cargando>
     <app-login *ngIf="!loginService.cargando" ></app-login>
   </ng-template>
 </div>
