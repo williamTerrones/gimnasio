@@ -1,6 +1,11 @@
 <div class="row">
   <div class="col-6 offset-3"style="padding-top:30px">
     <form class="form-group" [formGroup]="formulario">
+
+      <div class="text-center">
+        <img src="assets/img/trainer.jpg" alt="">
+      </div>
+
       <input type="email" class="form-control" placeholder="Email" formControlName="email" >
       <div *ngIf="formulario.controls['email'].invalid && formulario.controls['email'].dirty">
         <div class="alert alert-danger" role="alert" *ngIf="formulario.controls['email'].errors.required">
@@ -16,7 +21,8 @@
           La contraseña es requerida
         </div>
       </div>
-      <button type="button" class="btn btn-primary form-control" (click)="login()" [disabled]="!formulario.valid" >Iniciar sesión</button>
+      <div *ngIf="error">{{mensaje}}</div>
+      <button type="submit" class="btn btn-primary form-control" (click)="login()" [disabled]="!formulario.valid" >Iniciar sesión</button>
     </form>
   </div>
 </div>

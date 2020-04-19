@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   user:Login = new Login();
   public formulario:FormGroup;
+  error:boolean = false;
+  mensaje:string = '';
 
   constructor(public loginService:LoginService, private formBuilder:FormBuilder) { }
 
@@ -29,7 +31,14 @@ export class LoginComponent implements OnInit {
   login(){
     console.log(this.formulario)
     if(!this.formulario.valid) return 
-    this.loginService.login(this.formulario.value.email,this.formulario.value.password)
+    
+    this.loginService.login(this.formulario.value.email,this.formulario.value.password).then(resp => {
+      console.log("Resp ", resp)
+    }).catch(error => {
+      console.log("Error ",error)
+      this.error = true;
+      this.mensaje = error.message;
+    })
   }
 
 }
