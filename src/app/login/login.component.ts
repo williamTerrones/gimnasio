@@ -13,7 +13,9 @@ export class LoginComponent implements OnInit {
   user:Login = new Login();
   public formulario:FormGroup;
   error:boolean = false;
+  cargando:boolean = false;
   mensaje:string = '';
+  mensajeBoton:string = 'Iniciar sesión';
 
   constructor(public loginService:LoginService, private formBuilder:FormBuilder) { }
 
@@ -28,9 +30,26 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login(){
+  async login(){
     console.log(this.formulario)
     if(!this.formulario.valid) return 
+
+    try{
+
+      this.cargando = true;
+      this.mensajeBoton = 'Cargando...'
+      await this.loginService.login(this.formulario.value.email,this.formulario.value.password);
+
+    } catch(error){
+
+      this.error = true;
+      this.mensaje = error.message;
+
+    }
+
+    this.mensajeBoton = 'Iniciar sesión'
+
+
     
     this.loginService.login(this.formulario.value.email,this.formulario.value.password).then(resp => {
       console.log("Resp ", resp)

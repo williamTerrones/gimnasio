@@ -22,7 +22,7 @@
         </div>
       </div>
       <div *ngIf="error">{{mensaje}}</div>
-      <button type="submit" class="btn btn-primary form-control" (click)="login()" [disabled]="!formulario.valid" >Iniciar sesión</button>
+      <button type="submit" class="btn btn-primary form-control" (click)="login()" [disabled]="!formulario.valid" >{{mensajeBoton}}</button>
     </form>
   </div>
 </div>
