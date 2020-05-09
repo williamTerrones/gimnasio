@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection, DocumentSnapshot, DocumentData } from 'angularfire2/firestore';
 import { ClienteI } from '../models/cliente.interface';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,10 +19,19 @@ export class ClienteService {
   }
 
   getClientes(){
-    this.clientesCollection.valueChanges().subscribe(clientes => {
-      this.clientes = clientes;
+    this.clientesCollection.snapshotChanges().subscribe(data => {
+      this.clientes = data.map(a => {
+        const data = a.payload.doc.data() as ClienteI;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      });
       this.cargando = false;
     })
+  }
+
+  async getCliente(idCliete:string) : Promise<ClienteI> {
+    const doc = await this.clientesCollection.doc(idCliete).ref.get()
+    return doc.exists ? doc.data() as ClienteI : null;
   }
 
   addCliente(cliente: ClienteI) {

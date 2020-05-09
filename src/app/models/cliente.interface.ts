@@ -4,4 +4,6 @@ export interface ClienteI {
     email:string,
     telefono:string,
     domicilio?:string,
+    url_imagen?:string,
+    id?:string,
 }

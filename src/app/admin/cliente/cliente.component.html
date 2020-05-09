@@ -1,0 +1,24 @@
+<br>
+
+<div class="form-group" *ngIf="!cargando; else showCargando">
+    <div class="row">
+        <div class="col-6">
+            <input type="text" class="form-control" placeholder="Nombre" [(ngModel)]="cliente.nombre" >
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control" placeholder="Apellidos" [(ngModel)]="cliente.apellidos" >
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <input type="number" class="form-control" placeholder="Telefono" [(ngModel)]="cliente.telefono"  >
+        </div>
+        <div class="col-6">
+            <input type="email" class="form-control" placeholder="Email" [(ngModel)]="cliente.email" >
+        </div>
+    </div>
+</div>
+
+<ng-template #showCargando>
+    <app-cargando [clase]="'text-center'"></app-cargando>
+</ng-template>

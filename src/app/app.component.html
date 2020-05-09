@@ -2,7 +2,7 @@
 <div class="container">
     <router-outlet *ngIf="!loginService.cargando && loginService.user; else showLogin"></router-outlet>
   <ng-template #showLogin>
-    <app-cargando *ngIf="loginService.cargando" ></app-cargando>
+    <app-cargando *ngIf="loginService.cargando" [clase]="'loader text-center'" ></app-cargando>
     <app-login *ngIf="!loginService.cargando" ></app-login>
   </ng-template>
 </div>
