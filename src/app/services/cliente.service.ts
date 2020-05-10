@@ -3,6 +3,7 @@ import { AngularFirestore, AngularFirestoreCollection, DocumentSnapshot, Documen
 import { ClienteI } from '../models/cliente.interface';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Cliente } from '../models/cliente';
 
 @Injectable({
   providedIn: 'root'
@@ -34,8 +35,24 @@ export class ClienteService {
     return doc.exists ? doc.data() as ClienteI : null;
   }
 
-  addCliente(cliente: ClienteI) {
-    this.clientesCollection.add(cliente);
+  addCliente(cliente: Cliente) {
+    return new Promise((resolve,reject) => {
+      this.clientesCollection.add({...cliente}).then((resp) => {
+        resolve(resp)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  }
+
+  updateCliente(idCliente:string,cliente:Cliente){
+    return new Promise((resolve,reject) => {
+      this.clientesCollection.doc(idCliente).update({...cliente}).then(() => {
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
   }
 
 }

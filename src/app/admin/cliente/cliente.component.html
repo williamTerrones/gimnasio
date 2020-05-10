@@ -17,6 +17,16 @@
             <input type="email" class="form-control" placeholder="Email" [(ngModel)]="cliente.email" >
         </div>
     </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-8 offset-2">
+            <button class="form-control btn btn-primary" (click)="es_nuevo ? guardarCliente() : actualizarCliente()">Guardar</button>
+        </div>
+    </div>
+
+
 </div>
 
 <ng-template #showCargando>
