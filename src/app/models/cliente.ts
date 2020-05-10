@@ -1,4 +1,5 @@
 export class Cliente {
+    fecha_registro:Date;
     nombre:string;
     apellidos:string;
     email:string;

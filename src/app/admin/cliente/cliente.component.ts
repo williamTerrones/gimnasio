@@ -66,6 +66,7 @@ export class ClienteComponent implements OnInit {
 
       this.titulo_boton = "Cargando..."
       this.muestra_cargando = true;
+      this.cliente.fecha_registro = new Date();
 
       const id:string = await this.clienteService.addCliente(this.cliente) as string
        

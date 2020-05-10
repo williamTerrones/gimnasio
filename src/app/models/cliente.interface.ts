@@ -1,4 +1,5 @@
 export interface ClienteI {
+    fecha_registro:Date,
     nombre:string,
     apellidos:string,
     email:string,
