@@ -41,22 +41,28 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
   nuevoPrecio(template:TemplateRef<any>){
     this.id = null;
     this.precio = new Precio()
+    this.texto_boton = "Guardar";
     this.modalRef = this.modalService.show(template)
   }
 
   async verPrecio(idPrecio:string, template:TemplateRef<any>){
+    
     this.id = idPrecio;
-    this.cargado_informacion = true;
+    this.cargando_informacion = true;
     this.modalRef = this.modalService.show(template)
+
     const precio = await this.precioService.getPrecio(this.id)
 
     if(precio===null){
       await swal.fire('Upps!', "El precio no fué encontrado", 'error');
       this.cerrarModal();
     }
-
-    this.precio = precio as Precio;
-    this.cargado_informacion = false;
+    
+    setTimeout(() => {
+      this.texto_boton = "Actualizar";
+      this.precio = precio as Precio;
+      this.cargando_informacion = false;
+    },500)
 
   }
 
@@ -64,7 +70,7 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
 
     try{
 
-      this.titulo_boton = "Cargando..."
+      this.texto_boton = "Cargando..."
       this.muestra_cargando = true;
       this.precio.fecha_registro = new Date();
 
@@ -77,7 +83,7 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
        swal.fire('Upps!', "Ocurrió un error inesperado", 'error');
      }
 
-     this.titulo_boton = "Guardar";
+     this.texto_boton = "Guardar";
      this.muestra_cargando = false;
 
   }
@@ -85,7 +91,7 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
   async actualizarPrecio(){
     try{
       
-      this.titulo_boton = "Cargando..."
+      this.texto_boton = "Cargando..."
       this.muestra_cargando = true;
 
       await this.precioService.updatePrecio(this.id,this.precio)
@@ -93,7 +99,7 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
 
      } catch(error) {
        console.log("Error al actualizar cliente ",error)
-       this.titulo_boton = "Actualizar"
+       this.texto_boton = "Actualizar"
        swal.fire('Upps!', "Ocurrió un error inesperado", 'error')
      }
 

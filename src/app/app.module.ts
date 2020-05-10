@@ -23,6 +23,7 @@ import { MenuComponent } from './componentes/menu/menu.component';
 import { ClientesComponent } from './admin/clientes/clientes.component';
 import { ClienteComponent } from './admin/cliente/cliente.component';
 import { PreciosComponent } from './admin/precios/precios.component';
+import { SkeletonComponent } from './componentes/skeleton/skeleton.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PreciosComponent } from './admin/precios/precios.component';
     MenuComponent,
     ClientesComponent,
     ClienteComponent,
-    PreciosComponent
+    PreciosComponent,
+    SkeletonComponent
   ],
   imports: [
     BrowserModule,

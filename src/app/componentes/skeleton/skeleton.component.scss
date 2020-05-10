@@ -1,0 +1,24 @@
+.skeleton {
+  div:empty {
+    animation: loading 1.7s infinite linear;
+    background: #dedfe1;
+    background-image: -webkit-linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+    background-image: linear-gradient(to right, #dedfe1 0%, #f2f3f5 20%, #dedfe1 40%, #dedfe1 100%);
+    background-repeat: no-repeat;
+  }
+
+  div:empty {
+    height: 38px;
+    width: 80%;
+  }
+
+  @keyframes loading {
+    0% {
+      background-position: -100px;
+    }
+
+    100% {
+      background-position: 450px;
+    }
+  }
+}
