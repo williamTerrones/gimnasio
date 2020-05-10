@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-8">
 
-        <select class="form-control" [(ngModel)]="clienteSeleccionado" >
+        <select class="form-control" [(ngModel)]="clienteSeleccionado" [disabled]="clienteService.cargando" >
             <option [value]="null">Selecciona un cliente</option>
             <option *ngFor="let cliente of clienteService.clientes" [value]="cliente.id" >{{cliente.nombre}}</option>
         </select>
