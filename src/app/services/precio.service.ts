@@ -12,7 +12,7 @@ export class PrecioService {
   public cargando:boolean = true;
 
   constructor(private afs: AngularFirestore) { 
-    this.preciosCollection = afs.collection<Precio>('Precios');
+    this.preciosCollection = afs.collection<Precio>('Precios',ref => ref.where('activo','==',true));
   }
 
   getPrecios(){
@@ -45,6 +45,16 @@ export class PrecioService {
   updatePrecio(idPrecio:string,precio:Precio){
     return new Promise((resolve,reject) => {
       this.preciosCollection.doc(idPrecio).update({...precio}).then(() => {
+        resolve()
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  }
+
+  deletePrecio(idPrecio:string){
+    return new Promise((resolve,reject) => {
+      this.preciosCollection.doc(idPrecio).update({activo:false}).then(() => {
         resolve()
       }).catch(error => {
         reject(error)

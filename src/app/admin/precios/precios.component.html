@@ -23,6 +23,7 @@
       <td>{{tipos_duracion[precio.tipo_duracion].nombre}}</td>
       <td>
         <button type="button" class="btn btn-primary" (click)="verPrecio(precio.id, template)">Ver</button>
+        <button type="button" class="btn btn-danger" (click)="eliminarPrecio(precio.id)">Eliminar</button>
       </td>
     </tr>
   </tbody>

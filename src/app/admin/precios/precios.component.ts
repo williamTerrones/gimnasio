@@ -4,6 +4,7 @@ import { Precio } from 'src/app/models/precio';
 import { PrecioService } from 'src/app/services/precio.service';
 import swal from'sweetalert2';
 import { DatosGenerales } from 'src/app/mixins/datosGenerales';
+import { ALERTA_CONFIRMACION } from 'src/app/constants/helpers';
 
 interface DuracionI {
   id:number,
@@ -61,8 +62,29 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
     setTimeout(() => {
       this.texto_boton = "Actualizar";
       this.precio = precio as Precio;
+      console.log("Precio ", precio)
       this.cargando_informacion = false;
     },500)
+
+  }
+
+  async eliminarPrecio(idPrecio:string){
+
+    try{
+
+      let alerta = ALERTA_CONFIRMACION
+      alerta.text ="Al eliminar el precio no se podrá recuperar";
+      const result = await swal.fire(alerta)
+
+      if(!result.value) return ;
+      
+      await this.precioService.deletePrecio(idPrecio)
+
+    } catch(error){
+      console.log("Error al eliminar precio ", error)
+      swal.fire('Upps!', "Ocurrió un error inesperado", 'error');
+    }
+
 
   }
 
@@ -89,6 +111,7 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
   }
 
   async actualizarPrecio(){
+
     try{
       
       this.texto_boton = "Cargando..."
@@ -104,6 +127,7 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
      }
 
      this.muestra_cargando = false;
+     this.texto_boton = "Actualizar"
 
    
   }
