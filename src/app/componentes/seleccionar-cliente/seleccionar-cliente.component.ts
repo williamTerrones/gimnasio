@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from 'src/app/services/cliente.service';
+
+interface ListaI {
+  id:string,
+  nombre:string,
+}
 
 @Component({
   selector: 'app-seleccionar-cliente',
@@ -7,7 +13,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeleccionarClienteComponent implements OnInit {
 
-  constructor() { }
+  clienteSeleccionado:string = null;
+  busqueda:string = "";
+
+  constructor(public clienteService:ClienteService) {
+    
+   }
+
+   buscarImagen(){
+     
+    const cliente = this.clienteService.clientes[this.clienteSeleccionado]
+     
+     if(cliente){
+       if(cliente.url_imagen){
+        return cliente.url_imagen
+       }
+     }
+     return 'assets/img/user.png'
+
+   }
+
 
   ngOnInit(): void {
   }

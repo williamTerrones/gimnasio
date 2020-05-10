@@ -37,6 +37,7 @@ export class ClienteService {
   }
 
   getClientes(){
+
     this.clientesCollection.snapshotChanges().subscribe(data => {
       this.clientes = data.map(a => {
         const data = a.payload.doc.data() as ClienteI;

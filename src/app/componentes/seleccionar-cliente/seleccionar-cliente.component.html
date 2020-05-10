@@ -1,1 +1,15 @@
-<p>seleccionar-cliente works!</p>
+<div class="row">
+    <div class="col-8">
+
+        <select class="form-control" [(ngModel)]="clienteSeleccionado" >
+            <option [value]="null">Selecciona un cliente</option>
+            <option *ngFor="let cliente of clienteService.clientes; let i = index" [value]="i" >{{cliente.nombre}}</option>
+        </select>
+
+        <img style="width:50%;height:50%;" class="img-thumbnail img-responsive"
+        [src]="buscarImagen()" *ngIf="clienteSeleccionado!==null && clienteSeleccionado!=='null'" alt="Card image cap" />
+    </div>
+    <div class="col-4">
+        <input type="search" placeholder="Buscar" [(ngModel)]="busqueda" class="form-control">
+    </div>
+</div>
