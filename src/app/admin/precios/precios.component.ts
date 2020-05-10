@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Precio } from 'src/app/models/precio';
 
 @Component({
   selector: 'app-precios',
@@ -9,6 +10,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 export class PreciosComponent implements OnInit {
 
   modalRef:BsModalRef
+  precio:Precio = new Precio();
 
   constructor(private modalService:BsModalService) { }
 
