@@ -1,6 +1,6 @@
 <div class="row">
     <button type="button" class="btn btn-primary form-control offset-md-10 col-md-2 form-control" 
-    (click)="openModal(template)" >
+    (click)="nuevoPrecio(template)" >
         Añadir precio
     </button>
 </div>
@@ -28,7 +28,7 @@
 <ng-template #template >
     <div class="modal-header">
         <h4>Nuevo precio</h4>
-        <button type="button" class="close pull-right" aria-label="close" (click)="modalRef.hide()" >
+        <button type="button" class="close pull-right" aria-label="close" (click)="cerrarModal()" >
             <span aria-hidden="true" >&times;</span>
         </button>
     </div>
@@ -50,7 +50,10 @@
                 </select>
             </div>
             <div class="col-12">
-                <button type="button" class="btn btn-primary form-control" >Guardar</button>
+                <button type="button" class="btn btn-primary form-control" [disabled]="muestra_cargando" 
+                (click)="id!==null?actualizarPrecio() : guardarPrecio()">
+                    {{titulo_boton}}
+                </button>
             </div>
             
         </div>

@@ -27,5 +27,15 @@ export class PrecioService {
     })
   }
 
+  addPrecio(precio:Precio) {
+    return new Promise((resolve,reject) => {
+      this.preciosCollection.add({...precio}).then((resp) => {
+        resolve(resp.id)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  }
+
 
 }
