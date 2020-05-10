@@ -2,6 +2,7 @@ import { convertirFechaString } from '../constants/helpers';
 import { DocumentReference } from 'angularfire2/firestore';
 
 export class Cliente {
+    
     fecha_registro:Date;
     nombre:string;
     apellidos:string;

@@ -26,6 +26,7 @@ import { PreciosComponent } from './admin/precios/precios.component';
 import { SkeletonComponent } from './componentes/skeleton/skeleton.component';
 import { InscripcionesComponent } from './admin/inscripciones/inscripciones.component';
 import { SeleccionarClienteComponent } from './componentes/seleccionar-cliente/seleccionar-cliente.component';
+import { InscripcionComponent } from './admin/inscripcion/inscripcion.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { SeleccionarClienteComponent } from './componentes/seleccionar-cliente/s
     PreciosComponent,
     SkeletonComponent,
     InscripcionesComponent,
-    SeleccionarClienteComponent
+    SeleccionarClienteComponent,
+    InscripcionComponent
   ],
   imports: [
     BrowserModule,

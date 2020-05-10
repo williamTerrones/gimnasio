@@ -6,6 +6,7 @@ import { ClientesComponent } from './admin/clientes/clientes.component';
 import { ClienteComponent } from './admin/cliente/cliente.component';
 import { PreciosComponent } from './admin/precios/precios.component';
 import { InscripcionesComponent } from './admin/inscripciones/inscripciones.component';
+import { InscripcionComponent } from './admin/inscripcion/inscripcion.component';
 //import { LoginComponent } from './pages/login/login.component';
 
 
@@ -33,6 +34,10 @@ const routes: Routes = [
       {
         path:'inscripciones',
         component:InscripcionesComponent,
+      },
+      {
+        path:'inscripciones/:id_inscripcion',
+        component:InscripcionComponent,
       }
     ]
   }
