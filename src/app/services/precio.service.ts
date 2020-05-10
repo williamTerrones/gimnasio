@@ -20,7 +20,8 @@ export class PrecioService {
       this.precios = data.map(a => {
         const data = a.payload.doc.data() as Precio;
         const id = a.payload.doc.id;
-        return { id, ...data };
+        const ref = a.payload.doc.ref;
+        return { id, ...data,...{ref:ref} };
       });
       console.log("Precios ", this.precios)
       this.cargando = false;

@@ -20,12 +20,15 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { CargandoComponent } from './componentes/cargando/cargando.component';
 import { MenuComponent } from './componentes/menu/menu.component';
+import { SkeletonComponent } from './componentes/skeleton/skeleton.component';
+import { SeleccionarClienteComponent } from './componentes/seleccionar-cliente/seleccionar-cliente.component';
 import { ClientesComponent } from './admin/clientes/clientes.component';
 import { ClienteComponent } from './admin/cliente/cliente.component';
 import { PreciosComponent } from './admin/precios/precios.component';
-import { SkeletonComponent } from './componentes/skeleton/skeleton.component';
+
+import { SeleccionarPrecioComponent } from './componentes/seleccionar-precio/seleccionar-precio.component';
 import { InscripcionesComponent } from './admin/inscripciones/inscripciones.component';
-import { SeleccionarClienteComponent } from './componentes/seleccionar-cliente/seleccionar-cliente.component';
+
 import { InscripcionComponent } from './admin/inscripcion/inscripcion.component';
 
 @NgModule({
@@ -41,7 +44,8 @@ import { InscripcionComponent } from './admin/inscripcion/inscripcion.component'
     SkeletonComponent,
     InscripcionesComponent,
     SeleccionarClienteComponent,
-    InscripcionComponent
+    InscripcionComponent,
+    SeleccionarPrecioComponent
   ],
   imports: [
     BrowserModule,
