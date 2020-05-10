@@ -47,12 +47,13 @@ export class ClienteComponent implements OnInit {
    async obtenerCliente(){
     this.cargado_informacion = true;
     this.es_nuevo = false;
-    this.cliente = await this.clienteService.getCliente(this.id_cliente)
-    this.cargado_informacion = false;
-    if(this.cliente==null){
+    let cliente = await this.clienteService.getCliente(this.id_cliente)
+    if(cliente==null){
       await swal.fire("Upps!","El cliente no ha sido encontrado","error")
       this.regresarAClientes()
     }
+    this.cliente = new Cliente(cliente);
+    this.cargado_informacion = false;
     this.titulo_boton = "Actualizar";
    }
 
@@ -67,6 +68,7 @@ export class ClienteComponent implements OnInit {
       this.titulo_boton = "Cargando..."
       this.muestra_cargando = true;
       this.cliente.fecha_registro = new Date();
+      this.cliente.fecha_nacimiento = new Date(this.cliente.fecha_nacimiento)
 
       const id:string = await this.clienteService.addCliente(this.cliente) as string
        
@@ -93,6 +95,7 @@ export class ClienteComponent implements OnInit {
       
       this.titulo_boton = "Cargando..."
       this.muestra_cargando = true;
+      this.cliente.fecha_nacimiento = new Date(this.cliente.fecha_nacimiento)
 
       if(this.imagen!==null){
         const url_imagen:string = await this.clienteService.uploadImage(this.id_cliente,this.imagen) as string;

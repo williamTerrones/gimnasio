@@ -5,7 +5,7 @@ export interface ClienteI {
     email:string,
     telefono:string,
     domicilio?:string,
-    fecha_nacimiento?:string,
+    fecha_nacimiento?:any,
     url_imagen?:string,
     id?:string,
     activo:boolean,

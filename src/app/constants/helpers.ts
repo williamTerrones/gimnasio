@@ -9,6 +9,17 @@ const ALERTA_CONFIRMACION = {
     showLoaderOnConfirm: true
   }
 
+  const convertirFechaString = (seconds:number) => {
+
+    let date = new Date(seconds * 1000);
+    let anio = date.getFullYear();
+    let mes = ("0" + (date.getMonth() + 1)).slice(-2);
+    let dia = ("0" + date.getDate()).slice(-2);
+
+    return `${anio}-${mes}-${dia}`
+  }
+
   export {
-    ALERTA_CONFIRMACION
+    ALERTA_CONFIRMACION,
+    convertirFechaString,
   }
