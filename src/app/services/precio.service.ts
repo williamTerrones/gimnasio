@@ -27,10 +27,25 @@ export class PrecioService {
     })
   }
 
+  async getPrecio(idPrecio:string) : Promise<Precio> {
+    const doc = await this.preciosCollection.doc(idPrecio).ref.get()
+    return doc.exists ? doc.data() as Precio : null;
+  }
+
   addPrecio(precio:Precio) {
     return new Promise((resolve,reject) => {
       this.preciosCollection.add({...precio}).then((resp) => {
         resolve(resp.id)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+  }
+
+  updatePrecio(idPrecio:string,precio:Precio){
+    return new Promise((resolve,reject) => {
+      this.preciosCollection.doc(idPrecio).update({...precio}).then(() => {
+        resolve()
       }).catch(error => {
         reject(error)
       })

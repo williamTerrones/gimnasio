@@ -5,4 +5,5 @@ export class Precio {
     duracion:number = 1;
     tipo_duracion:number = 0;
     fecha_registro:Date;
+    id?:string;
 }

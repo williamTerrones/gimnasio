@@ -44,6 +44,22 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
     this.modalRef = this.modalService.show(template)
   }
 
+  async verPrecio(idPrecio:string, template:TemplateRef<any>){
+    this.id = idPrecio;
+    this.cargado_informacion = true;
+    this.modalRef = this.modalService.show(template)
+    const precio = await this.precioService.getPrecio(this.id)
+
+    if(precio===null){
+      await swal.fire('Upps!', "El precio no fué encontrado", 'error');
+      this.cerrarModal();
+    }
+
+    this.precio = precio as Precio;
+    this.cargado_informacion = false;
+
+  }
+
   async guardarPrecio(){
 
     try{
@@ -53,7 +69,8 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
       this.precio.fecha_registro = new Date();
 
       await this.precioService.addPrecio(this.precio) as string
-      this.cerrarModal();
+      swal.fire('Bien hecho!', "El precio ha sido actualizado correctamente", 'success').then(() => this.cerrarModal())
+      
 
      } catch(error) {
        console.log("Error al guardar precio ",error)
@@ -66,7 +83,23 @@ export class PreciosComponent extends DatosGenerales implements OnInit {
   }
 
   async actualizarPrecio(){
-    console.log("Actualizar precio")
+    try{
+      
+      this.titulo_boton = "Cargando..."
+      this.muestra_cargando = true;
+
+      await this.precioService.updatePrecio(this.id,this.precio)
+      swal.fire('Bien hecho!', "El precio ha sido actualizado correctamente", 'success').then(() => this.cerrarModal())
+
+     } catch(error) {
+       console.log("Error al actualizar cliente ",error)
+       this.titulo_boton = "Actualizar"
+       swal.fire('Upps!', "Ocurrió un error inesperado", 'error')
+     }
+
+     this.muestra_cargando = false;
+
+   
   }
 
   cerrarModal(){

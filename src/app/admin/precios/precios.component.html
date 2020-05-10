@@ -12,6 +12,7 @@
         <th scope="col">Costo</th>
         <th scope="col">Duración</th>
         <th scope="col">Tipo de duración</th>
+        <th scope="col">Acciones</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,9 @@
         <td>{{precio.costo}}</td>
         <td>{{precio.duracion}}</td>
         <td>{{tipos_duracion[precio.tipo_duracion].nombre}}</td>
+        <td>
+            <button type="button" class="btn btn-primary" (click)="verPrecio(precio.id, template)" >Ver</button>
+        </td>
       </tr>
     </tbody>
   </table>
