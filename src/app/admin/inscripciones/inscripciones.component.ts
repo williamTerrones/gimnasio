@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Inscripcion } from 'src/app/models/inscripccion';
+import { ClienteService } from 'src/app/services/cliente.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-inscripciones',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InscripcionesComponent implements OnInit {
 
-  constructor() { }
+  public inscripcion:Inscripcion = new Inscripcion;
+
+  constructor(public clienteService:ClienteService) { }
 
   ngOnInit(): void {
+  }
+
+  asignarCliente(idCliente:string){
+    
+    let cliente = this.clienteService.clientes.find(cliente => cliente.id===idCliente)
+
+    this.inscripcion.cliente = cliente ? cliente.ref : null;
+    
   }
 
 }

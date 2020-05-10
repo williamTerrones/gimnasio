@@ -1,4 +1,5 @@
 import { convertirFechaString } from '../constants/helpers';
+import { DocumentReference } from 'angularfire2/firestore';
 
 export class Cliente {
     fecha_registro:Date;
@@ -11,6 +12,7 @@ export class Cliente {
     url_imagen?:string;
     id?:string;
     activo:boolean = true;
+    ref?:DocumentReference;
 
     constructor(cliente?:Cliente){
         if(cliente!==undefined){

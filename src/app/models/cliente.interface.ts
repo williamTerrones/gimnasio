@@ -1,3 +1,5 @@
+import { DocumentReference } from 'angularfire2/firestore';
+
 export interface ClienteI {
     fecha_registro:Date,
     nombre:string,
@@ -9,4 +11,5 @@ export interface ClienteI {
     url_imagen?:string,
     id?:string,
     activo:boolean,
+    ref?:DocumentReference
 }

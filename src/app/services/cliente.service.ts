@@ -41,8 +41,9 @@ export class ClienteService {
     this.clientesCollection.snapshotChanges().subscribe(data => {
       this.clientes = data.map(a => {
         const data = a.payload.doc.data() as ClienteI;
+        const ref = a.payload.doc.ref;
         const id = a.payload.doc.id;
-        return { id, ...data };
+        return { id, ...data, ...{ref:ref} };
       });
       this.cargando = false;
     })

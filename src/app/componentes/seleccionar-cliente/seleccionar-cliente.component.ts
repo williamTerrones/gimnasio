@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ClienteService } from 'src/app/services/cliente.service';
 
 interface ListaI {
@@ -15,9 +15,15 @@ export class SeleccionarClienteComponent implements OnInit {
 
   clienteSeleccionado:string = null;
   busqueda:string = "";
+  url_imagen:string = '';
+  @Output("seleccionoCliente") seleccionoCliente = new EventEmitter();
 
   constructor(public clienteService:ClienteService) {
     
+   }
+
+   seleccionarCliente(){
+     this.seleccionoCliente.emit(this.clienteSeleccionado)
    }
 
    buscarImagen(){
