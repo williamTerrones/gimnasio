@@ -6,4 +6,11 @@ export class Cliente {
     domicilio?:string;
     url_imagen?:string;
     id?:string;
+    activo:boolean;
+
+    constructor(){
+        if(!this.activo){
+            this.activo = true;
+        }
+    }
 }

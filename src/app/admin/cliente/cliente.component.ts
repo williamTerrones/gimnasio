@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from 'src/app/models/cliente';
+import swal from'sweetalert2';
 
 
 @Component({
@@ -46,13 +47,17 @@ export class ClienteComponent implements OnInit {
     this.cliente = await this.clienteService.getCliente(this.id_cliente)
     this.cargando = false;
     if(this.cliente==null){
-      console.log("Cliente null")
-    } else {
-      console.log("Cliente ", this.cliente)
+      swal.fire("Upps!","El cliente no ha sido encontrado","error")
+      this.regresarAClientes()
     }
    }
 
+   regresarAClientes(){
+    this.router.navigateByUrl('/admin/clientes')
+   }
+
    async guardarCliente(){
+
      try{
        
       const id:string = await this.clienteService.addCliente(this.cliente) as string
@@ -61,11 +66,14 @@ export class ClienteComponent implements OnInit {
          const url_imagen:string = await this.clienteService.uploadImage(id,this.imagen) as string;
          this.cliente.url_imagen = url_imagen;
          await this.clienteService.updateCliente(id,this.cliente)
-         this.router.navigateByUrl('/admin/clientes')
+         await swal.fire('Bien hecho!', "El cliente ha sido actualizado correctamente", 'success');
+         this.regresarAClientes()
        }
 
      } catch(error) {
        console.log("Error al guardar cliente ",error)
+       await swal.fire('Upps!', "Ocurrió un error inesperado", 'error');
+       this.regresarAClientes()
      }
 
    }
@@ -80,11 +88,13 @@ export class ClienteComponent implements OnInit {
       }
 
       await this.clienteService.updateCliente(this.id_cliente,this.cliente)
-
-      this.router.navigateByUrl('/admin/clientes')
+      await swal.fire('Bien hecho!', "El cliente ha sido actualizado correctamente", 'success');
+      this.regresarAClientes()
 
      } catch(error) {
        console.log("Error al actualizar cliente ",error)
+       await swal.fire('Upps!', "Ocurrió un error inesperado", 'error');
+       this.regresarAClientes()
      }
 
    }

@@ -6,4 +6,5 @@ export interface ClienteI {
     domicilio?:string,
     url_imagen?:string,
     id?:string,
+    activo:boolean,
 }
