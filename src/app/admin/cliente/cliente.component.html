@@ -17,6 +17,16 @@
             <input type="email" class="form-control" placeholder="Email" [(ngModel)]="cliente.email" >
         </div>
     </div>
+    <div class="row">
+        <div class="col-6">
+            <input type="radio" [value]="true" [(ngModel)]="cliente.activo" > Activo
+            <input type="radio" [value]="false" [(ngModel)]="cliente.activo" > Inactivo
+        </div>
+        <div class="col-6">
+            <label>Fecha de nacimiento</label>
+            <input type="date" class="form-control" placeholder="Email" [(ngModel)]="cliente.fecha_nacimiento" >
+        </div>
+    </div>
 
     <div class="row">
         <div class="col-8 offset-2">

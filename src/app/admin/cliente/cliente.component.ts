@@ -98,6 +98,8 @@ export class ClienteComponent implements OnInit {
         this.cliente.url_imagen = url_imagen;
       }
 
+      console.log("Actualiza cliente ", this.cliente)
+
       await this.clienteService.updateCliente(this.id_cliente,this.cliente)
       swal.fire('Bien hecho!', "El cliente ha sido actualizado correctamente", 'success').then(() => this.regresarAClientes())
 

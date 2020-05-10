@@ -4,13 +4,8 @@ export class Cliente {
     email:string;
     telefono:string;
     domicilio?:string;
+    fecha_nacimiento?:string;
     url_imagen?:string;
     id?:string;
-    activo:boolean;
-
-    constructor(){
-        if(!this.activo){
-            this.activo = true;
-        }
-    }
+    activo:boolean = true;
 }
