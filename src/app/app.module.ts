@@ -21,6 +21,7 @@ import { CargandoComponent } from './componentes/cargando/cargando.component';
 import { MenuComponent } from './componentes/menu/menu.component';
 import { ClientesComponent } from './admin/clientes/clientes.component';
 import { ClienteComponent } from './admin/cliente/cliente.component';
+import { PreciosComponent } from './admin/precios/precios.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ClienteComponent } from './admin/cliente/cliente.component';
     CargandoComponent,
     MenuComponent,
     ClientesComponent,
-    ClienteComponent
+    ClienteComponent,
+    PreciosComponent
   ],
   imports: [
     BrowserModule,
