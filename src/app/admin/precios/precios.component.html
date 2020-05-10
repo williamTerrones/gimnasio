@@ -1,1 +1,16 @@
-<p>precios works!</p>
+<div class="row">
+    <button type="button" class="btn btn-primary form-control offset-md-10 col-md-2 form-control" 
+    (click)="openModal(template)" >
+        Añadir precio
+    </button>
+</div>
+
+
+<ng-template #template >
+    <div class="modal-header">
+        <h4>Nuevo precio</h4>
+        <button type="button" class="close pull-right" aria-label="close" (click)="modalRef.hide()" >
+            <span aria-hidden="true" >&times;</span>
+        </button>
+    </div>
+</ng-template>
