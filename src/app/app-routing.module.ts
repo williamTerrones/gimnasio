@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ClientesComponent } from './admin/clientes/clientes.component';
 import { ClienteComponent } from './admin/cliente/cliente.component';
 import { PreciosComponent } from './admin/precios/precios.component';
+import { InscripcionesComponent } from './admin/inscripciones/inscripciones.component';
 //import { LoginComponent } from './pages/login/login.component';
 
 
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path:'precios',
         component:PreciosComponent,
+      },
+      {
+        path:'inscripciones',
+        component:InscripcionesComponent,
       }
     ]
   }
