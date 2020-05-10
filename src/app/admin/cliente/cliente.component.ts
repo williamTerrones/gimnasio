@@ -21,12 +21,13 @@ export class ClienteComponent implements OnInit {
   public imagen:File = null;
   
 
-  constructor(public clienteService:ClienteService,public route: ActivatedRoute,
-    public router:Router) {
+  constructor(public clienteService:ClienteService,public route: ActivatedRoute,public router:Router) {
+
     this.id_cliente = this.route.snapshot.paramMap.get('id_cliente')
     if(this.id_cliente!=="nuevo"){
       this.obtenerCliente();
     }
+
    }
 
    async seleccionarArchivo(e){
@@ -49,7 +50,7 @@ export class ClienteComponent implements OnInit {
     this.cliente = await this.clienteService.getCliente(this.id_cliente)
     this.cargado_informacion = false;
     if(this.cliente==null){
-      swal.fire("Upps!","El cliente no ha sido encontrado","error")
+      await swal.fire("Upps!","El cliente no ha sido encontrado","error")
       this.regresarAClientes()
     }
     this.titulo_boton = "Actualizar";
