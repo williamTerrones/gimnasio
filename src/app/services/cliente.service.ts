@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, DocumentSnapshot, DocumentData } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection} from 'angularfire2/firestore';
 import { ClienteI } from '../models/cliente.interface';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Cliente } from '../models/cliente';
+import { AngularFireStorage } from 'angularfire2/storage';
+import { finalize } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,9 +14,26 @@ export class ClienteService {
   public clientes:ClienteI[] = new Array<ClienteI>();
   public cargando:boolean = true;
 
-  constructor(private afs: AngularFirestore) { 
+  constructor(private afs: AngularFirestore, private afStorage: AngularFireStorage) { 
     this.clientesCollection = afs.collection<ClienteI>('Clientes');
     this.getClientes();
+  }
+
+  uploadImage(idCliente:string,imagen){
+    return new Promise((resolve,reject) => {
+
+      const task = this.afStorage.upload(`Clientes/${idCliente}/${idCliente}`, imagen);
+      const ref = this.afStorage.ref(`Clientes/${idCliente}/${idCliente}`); 
+
+      task.snapshotChanges()
+      .pipe(
+        finalize(() => {
+          const url = ref.getDownloadURL()
+          url.subscribe((url_imagen) => resolve(url_imagen))
+        })
+      ).subscribe();
+
+    })
   }
 
   getClientes(){
@@ -38,7 +55,7 @@ export class ClienteService {
   addCliente(cliente: Cliente) {
     return new Promise((resolve,reject) => {
       this.clientesCollection.add({...cliente}).then((resp) => {
-        resolve(resp)
+        resolve(resp.id)
       }).catch(error => {
         reject(error)
       })
