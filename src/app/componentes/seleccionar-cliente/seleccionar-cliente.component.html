@@ -3,7 +3,7 @@
 
         <select class="form-control" [(ngModel)]="clienteSeleccionado" >
             <option [value]="null">Selecciona un cliente</option>
-            <option *ngFor="let cliente of clienteService.clientes; let i = index" [value]="i" >{{cliente.nombre}}</option>
+            <option *ngFor="let cliente of clienteService.clientes" [value]="cliente.id" >{{cliente.nombre}}</option>
         </select>
 
         <img style="width:50%;height:50%;" class="img-thumbnail img-responsive"

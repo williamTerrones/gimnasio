@@ -21,8 +21,8 @@ export class SeleccionarClienteComponent implements OnInit {
    }
 
    buscarImagen(){
-     
-    const cliente = this.clienteService.clientes[this.clienteSeleccionado]
+
+    const cliente = this.clienteService.clientes.find(cliente=>cliente.id===this.clienteSeleccionado)
      
      if(cliente){
        if(cliente.url_imagen){
