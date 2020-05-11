@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Inscripcion } from 'src/app/models/inscripccion';
 import { ClienteService } from 'src/app/services/cliente.service';
+import { PrecioService } from 'src/app/services/precio.service';
 
 @Component({
   selector: 'app-inscripcion',
@@ -11,7 +12,7 @@ export class InscripcionComponent implements OnInit {
 
   public inscripcion:Inscripcion = new Inscripcion;
 
-  constructor(public clienteService:ClienteService) { }
+  constructor(public clienteService:ClienteService, public precioService:PrecioService) { }
 
   ngOnInit(): void {
   }
@@ -21,6 +22,14 @@ export class InscripcionComponent implements OnInit {
     let cliente = this.clienteService.clientes.find(cliente => cliente.id===idCliente)
 
     this.inscripcion.cliente = cliente ? cliente.ref : null;
+    
+  }
+
+  asignarPrecio(idPrecio:string){
+    
+    let precio = this.precioService.precios.find(precio => precio.id===idPrecio)
+
+    this.inscripcion.precio = precio ? precio.ref : null;
     
   }
 

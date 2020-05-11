@@ -5,7 +5,7 @@ export class Inscripcion {
 	fecha_inicial:Date;
 	fecha_final:Date;
 	cliente:DocumentReference;
-	precios:DocumentReference;
+	precio:DocumentReference;
 	subtotal:number;
 	descuento?:number;
 	iva:number;

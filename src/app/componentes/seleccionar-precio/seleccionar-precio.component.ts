@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PrecioService } from 'src/app/services/precio.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-seleccionar-precio',
@@ -10,10 +9,15 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class SeleccionarPrecioComponent implements OnInit {
 
   precioSeleccionado:string = null;
+  @Output("seleccionoPrecio") seleccionoPrecio = new EventEmitter();
 
   constructor(public precioService:PrecioService) {
     this.precioService.getPrecios();
    }
+
+   seleccionarPrecio(){
+    this.seleccionoPrecio.emit(this.precioSeleccionado)
+  }
 
   ngOnInit(): void {
   }
