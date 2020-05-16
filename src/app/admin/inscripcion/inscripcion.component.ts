@@ -66,17 +66,12 @@ export class InscripcionComponent implements OnInit {
     const precio = this.precioService.precios.find(precio => precio.id===this.inscripcion.precio.id)
 
     if(precio){
-
-      console.log(precio)
-      console.log(this.fechas)
       
       const tiempo = this.fechas.find(fecha => String(fecha.id)===String(precio.tipo_duracion))
+      
       if(tiempo){
-        console.log("Tiempo encontrado ", tiempo)
-        let fecha_inicial = moment(this.inscripcion.fecha_inicial, "DD-MM-YYYY")
-        let fecha_final = fecha_inicial.add(precio.duracion*tiempo.total,tiempo.substract as Base)
-        console.log("Fecha final ", fecha_final)
-        console.log("asd ", fecha_final.format("MM/DD/YYYY"))
+        const fecha_inicial = moment(this.inscripcion.fecha_inicial, "DD-MM-YYYY")
+        const fecha_final = fecha_inicial.add(precio.duracion*tiempo.total,tiempo.substract as Base)
         this.inscripcion.fecha_final = new Date(fecha_final.format("MM/DD/YYYY"));
         return true;
       }

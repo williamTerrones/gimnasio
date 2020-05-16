@@ -6,7 +6,7 @@
             <option *ngFor="let cliente of clienteService.clientes" [value]="cliente.id" >{{cliente.nombre}}</option>
         </select>
 
-        <img style="width:50%;height:50%;" class="img-thumbnail img-responsive"
+        <img class="img-thumbnail img-responsive"
         [src]="buscarImagen()" *ngIf="clienteSeleccionado!==null && clienteSeleccionado!=='null'" alt="Card image cap" />
     </div>
     <div class="col-4">
