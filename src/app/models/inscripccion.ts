@@ -8,6 +8,6 @@ export class Inscripcion {
 	precio:DocumentReference;
 	subtotal:number;
 	descuento?:number;
-	iva:number;
+	iva:number = 16;
 	total:number;
 }

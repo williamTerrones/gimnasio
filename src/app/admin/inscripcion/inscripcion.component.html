@@ -1,7 +1,29 @@
 <app-seleccionar-cliente (seleccionoCliente)="asignarCliente($event)" ></app-seleccionar-cliente>
 <div class="row">
     <div class="col-6">
-        <app-seleccionar-precio (seleccionoPrecio)="asignarPrecio($event)" ></app-seleccionar-precio>
+        <div class="row">
+            <div class="col-12">
+                <app-seleccionar-precio (seleccionoPrecio)="asignarPrecio($event)" ></app-seleccionar-precio>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="">IVA</label>
+                    <input type="number" class="form-control" disabled [(ngModel)]="inscripcion.iva" >
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="">Subtotal</label>
+                    <input type="number" class="form-control" disabled [(ngModel)]="inscripcion.subtotal" >
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="">Total</label>
+                    <input type="number" class="form-control" disabled [(ngModel)]="inscripcion.total" >
+                </div>
+            </div>
+        </div>
     </div>
     <div class="col-6">
         <div class="row">

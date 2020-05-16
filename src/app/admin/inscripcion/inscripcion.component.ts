@@ -46,6 +46,19 @@ export class InscripcionComponent implements OnInit {
     
     let precio = this.precioService.precios.find(precio => precio.id===idPrecio)
 
+    if(precio){
+
+      this.inscripcion.subtotal = precio.costo;
+      const iva = this.inscripcion.iva/100;
+      const cantidad_restar = this.inscripcion.subtotal*iva;
+      this.inscripcion.total = this.inscripcion.subtotal-cantidad_restar;
+
+    } else {
+      this.inscripcion.subtotal = null;
+      this.inscripcion.precio = null;
+      this.inscripcion.total = null;
+    }
+
     this.inscripcion.precio = precio ? precio.ref : null;
     
     this.calcularFechaFinal();
