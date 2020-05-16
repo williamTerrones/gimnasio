@@ -1,4 +1,22 @@
 <app-seleccionar-cliente (seleccionoCliente)="asignarCliente($event)" ></app-seleccionar-cliente>
-<app-seleccionar-precio (seleccionoPrecio)="asignarPrecio($event)" ></app-seleccionar-precio>
+<div class="row">
+    <div class="col-6">
+        <app-seleccionar-precio (seleccionoPrecio)="asignarPrecio($event)" ></app-seleccionar-precio>
+    </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label>Fecha de inicio</label>
+                    <input type="date" class="form-control" [ngModel]="inscripcion.fecha_inicial  | date:'yyyy-MM-dd'" (ngModelChange)="asignarFechaInicial($event); calcularFechaFinal()" >
+                </div>
+                <div class="form-group">
+                    <label for="">Fecha final</label>
+                    <input type="date" disabled class="form-control" [ngModel]="inscripcion.fecha_final | date:'yyyy-MM-dd'">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <button (click)="guardarInscripcion()" class="btn btn-primary" >Guardar</button>
